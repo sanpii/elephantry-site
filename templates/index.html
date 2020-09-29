@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="jumbotron">
+        <div class="container media">
+            <img src="logo.png" alt="logo" class="mr-3" />
+            <div class="media-body">
+                <h2>When Rust meets PostgreSQL</h2>
+                <p>
+                    Elephantry is an open source database access framework in
+                    Rust dedicated to PostgreSQL.
+                </p>
+                <p><a class="btn btn-primary btn-lg" href="{{ get_url(path="/documentation/quickstart")|safe }}" role="button">Get started »</a></p>
+            </div>
+        </div>
+    </div>
+
+    {% for page in section.pages %}
+        <div class="{% if loop.index is odd %}odd{% else %}even{% endif %}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        {% if loop.index is even %}
+                            <h3>{{ page.title }}</h3>
+                            <hr />
+                            <p>{{ page.description|markdown|safe }}</p>
+                        {% else %}
+                            {{ page.content|safe }}
+                        {% endif %}
+                    </div>
+                    <div class="col-sm">
+                        {% if loop.index is even %}
+                            {{ page.content|safe }}
+                        {% else %}
+                            <h3>{{ page.title }}</h3>
+                            <hr />
+                            <p>{{ page.description|markdown|safe }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

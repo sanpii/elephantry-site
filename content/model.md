@@ -1,0 +1,28 @@
++++
+title = "Write data"
+description = "You can easily retreive, create, update or delete entity with the model approach.\n\nThe cli helps you to generate entities from your database schema."
+weight = 3
++++
+
+```rust
+#[derive(elephantry::Entity)]
+struct Entity {
+    id: i32,
+    name: String,
+}
+
+struct Model;
+impl elephantry::Model for Model {
+    // …
+}
+
+struct Structure;
+impl elephantry::Structure for Structure {
+    // …
+}
+
+elephantry.find_all::<Model>(Some("order by name"))?;
+elephantry.insert_one::<Model>(entity)?;
+elephantry.update_one::<Model>(pk!{id => entity.id}, entity)?;
+elephantry.delete_one::<Model>(entity)?;
+```
