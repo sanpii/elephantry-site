@@ -1,6 +1,6 @@
 +++
 title = "Write data"
-description = "You can easily retreive, create, update or delete entity with the model approach.\n\nThe cli helps you to generate entities from your database schema."
+description = "You can easily retreive, create, update or delete entity with the model approach.\n\nThe [cli](https://crates.io/crates/elephantry-cli) helps you to generate entities from your database schema."
 weight = 3
 +++
 
