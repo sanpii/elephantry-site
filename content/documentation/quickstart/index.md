@@ -613,6 +613,13 @@ You can see the
 [10-transaction.rs](https://github.com/elephantry/elephantry/tree/master/core/examples/10-transaction.rs) for a
 complete example.
 
+# Notification
+
+PostgreSQL can be a low-effort message broker with `LISTEN`/`NOTIFY` commands.
+
+See the
+[11-notification.rs](https://github.com/elephantry/elephantry/tree/master/core/examples/11-notification.rs) example.
+
 # More
 
 You can also see the [todo](https://github.com/elephantry/todo) rocket
