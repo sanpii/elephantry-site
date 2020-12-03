@@ -295,6 +295,7 @@ See [03-read.rs](https://github.com/elephantry/elephantry/tree/master/core/examp
 # Modification
 
 - [`Connection::insert_one`](https://docs.rs/elephantry/0.1.0/elephantry/connection/struct.Connection.html#method.insert_one);
+- [`Connection::upsert_one`](https://docs.rs/elephantry/0.1.0/elephantry/connection/struct.Connection.html#method.upsert_one);
 - [`Connection::update_one`](https://docs.rs/elephantry/0.1.0/elephantry/connection/struct.Connection.html#method.update_one);
 - [`Connection::update_by_pk`](https://docs.rs/elephantry/0.1.0/elephantry/connection/struct.Connection.html#method.update_by_pk);
 - [`Connection::delete_one`](https://docs.rs/elephantry/0.1.0/elephantry/connection/struct.Connection.html#method.delete_one);
