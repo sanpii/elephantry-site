@@ -283,24 +283,24 @@ for employee in employees {
 The `elephantry::Connection` structure provides additional functions to retreive
 your data :
 
-- [`Connection::find_by_pk`](https://docs.rs/elephantry/0.1.0/elephantry/connection/struct.Connection.html#method.find_by_pk);
-- [`Connection::find_all`](https://docs.rs/elephantry/0.1.0/elephantry/connection/struct.Connection.html#method.find_all);
-- [`Connection::find_where`](https://docs.rs/elephantry/0.1.0/elephantry/connection/struct.Connection.html#method.find_where);
-- [`Connection::paginate_find_where`](https://docs.rs/elephantry/0.1.0/elephantry/connection/struct.Connection.html#method.paginate_find_where);
-- [`Connection::count_where`](https://docs.rs/elephantry/0.1.0/elephantry/connection/struct.Connection.html#method.count_where);
-- [`Connection::exist_where`](https://docs.rs/elephantry/0.1.0/elephantry/connection/struct.Connection.html#method.exist_where).
+- [`Connection::find_by_pk`](https://docs.rs/elephantry/latest/elephantry/connection/struct.Connection.html#method.find_by_pk);
+- [`Connection::find_all`](https://docs.rs/elephantry/latest/elephantry/connection/struct.Connection.html#method.find_all);
+- [`Connection::find_where`](https://docs.rs/elephantry/latest/elephantry/connection/struct.Connection.html#method.find_where);
+- [`Connection::paginate_find_where`](https://docs.rs/elephantry/latest/elephantry/connection/struct.Connection.html#method.paginate_find_where);
+- [`Connection::count_where`](https://docs.rs/elephantry/latest/elephantry/connection/struct.Connection.html#method.count_where);
+- [`Connection::exist_where`](https://docs.rs/elephantry/latest/elephantry/connection/struct.Connection.html#method.exist_where).
 
 See [03-read.rs](https://github.com/elephantry/elephantry/tree/master/core/examples/03-read.rs).
 
 # Modification
 
-- [`Connection::insert_one`](https://docs.rs/elephantry/0.1.0/elephantry/connection/struct.Connection.html#method.insert_one);
-- [`Connection::upsert_one`](https://docs.rs/elephantry/0.1.0/elephantry/connection/struct.Connection.html#method.upsert_one);
-- [`Connection::update_one`](https://docs.rs/elephantry/0.1.0/elephantry/connection/struct.Connection.html#method.update_one);
-- [`Connection::update_by_pk`](https://docs.rs/elephantry/0.1.0/elephantry/connection/struct.Connection.html#method.update_by_pk);
-- [`Connection::delete_one`](https://docs.rs/elephantry/0.1.0/elephantry/connection/struct.Connection.html#method.delete_one);
-- [`Connection::delete_by_pk`](https://docs.rs/elephantry/0.1.0/elephantry/connection/struct.Connection.html#method.delete_by_pk);
-- [`Connection::delete_where`](https://docs.rs/elephantry/0.1.0/elephantry/connection/struct.Connection.html#method.delete_where).
+- [`Connection::insert_one`](https://docs.rs/elephantry/latest/elephantry/connection/struct.Connection.html#method.insert_one);
+- [`Connection::upsert_one`](https://docs.rs/elephantry/latest/elephantry/connection/struct.Connection.html#method.upsert_one);
+- [`Connection::update_one`](https://docs.rs/elephantry/latest/elephantry/connection/struct.Connection.html#method.update_one);
+- [`Connection::update_by_pk`](https://docs.rs/elephantry/latest/elephantry/connection/struct.Connection.html#method.update_by_pk);
+- [`Connection::delete_one`](https://docs.rs/elephantry/latest/elephantry/connection/struct.Connection.html#method.delete_one);
+- [`Connection::delete_by_pk`](https://docs.rs/elephantry/latest/elephantry/connection/struct.Connection.html#method.delete_by_pk);
+- [`Connection::delete_where`](https://docs.rs/elephantry/latest/elephantry/connection/struct.Connection.html#method.delete_where).
 
 Theire functions return the impacted entity(ies).
 
