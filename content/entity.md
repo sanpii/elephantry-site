@@ -2,6 +2,8 @@
 title = "Entity"
 description = "Instead of retreive fields one by one, you can aggregate a row of result in a `struct`."
 weight = 2
+[extra]
+more="@/documentation/quickstart/index.md#entity"
 +++
 
 ```rust

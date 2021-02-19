@@ -2,6 +2,8 @@
 title = "Simple query"
 description = "Connect to the database, execute a query a tell witch data you want and its type. Elephantry does the rest!"
 weight = 0
+[extra]
+more="@/documentation/quickstart/index.md#primitive-types"
 +++
 
 ```rust

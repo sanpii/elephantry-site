@@ -25,8 +25,23 @@ a {
     font-weight: bold;
 }
 
-.btn-primary {
+.btn-outline-primary {
+    color: $blue;
+    border-color: $blue;
+}
+
+.btn-primary, .btn-outline-primary:hover {
     background-color: $blue;
+    border-color: $blue;
+}
+
+.btn-outline-light:hover {
+    color: $blue;
+}
+
+.btn-primary:hover {
+    background-color: white;
+    color: $blue;
 }
 
 .jumbotron {
@@ -76,6 +91,10 @@ a {
 
     hr {
         border-bottom-color: $gray;
+    }
+
+    a {
+        color: $gray;
     }
 }
 

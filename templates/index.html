@@ -10,7 +10,7 @@
                     Elephantry is an open source database access framework in
                     Rust dedicated to PostgreSQL.
                 </p>
-                <p><a class="btn btn-primary btn-lg" href="{{ get_url(path="/documentation/quickstart")|safe }}" role="button">Get started »</a></p>
+                <p><a class="btn btn-primary btn-lg" href="{{ get_url(path="/documentation/quickstart")|safe }}" role="button">Get started »</a></p>
             </div>
         </div>
     </div>
@@ -24,6 +24,9 @@
                             <h3>{{ page.title }}</h3>
                             <hr />
                             <p>{{ page.description|markdown|safe }}</p>
+                            {% if page.extra.more %}
+                                <p><a class="btn btn-outline-primary" href="{{ get_url(path=page.extra.more) }}">Read more »</a></p>
+                            {% endif %}
                         {% else %}
                             {{ page.content|safe }}
                         {% endif %}
@@ -35,6 +38,9 @@
                             <h3>{{ page.title }}</h3>
                             <hr />
                             <p>{{ page.description|markdown|safe }}</p>
+                            {% if page.extra.more %}
+                                <p><a class="btn btn-outline-light" href="{{ get_url(path=page.extra.more) }}">Read more »</a></p>
+                            {% endif %}
                         {% endif %}
                     </div>
                 </div>

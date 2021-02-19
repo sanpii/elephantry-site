@@ -2,6 +2,8 @@
 title = "Complex queries"
 description = "You can write queries as complex as you like."
 weight = 1
+[extra]
+more="@/documentation/quickstart/index.md#complex-requests"
 +++
 
 ```rust
