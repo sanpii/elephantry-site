@@ -101,6 +101,11 @@ source](https://github.com/sanpii/explain/blob/1.2.0/src/main.rs#L106-L108)[^2] 
 see an example how to use this with `structopt` (it’s easy like impl the `Into`
 trait).
 
+You can also use the [config](https://crates.io/crates/config) crate (by
+enabling the `config-support` feature) to use this layered configuration system
+to easily build an `elephantry::Config` object. See
+[00-config.rs](https://github.com/elephantry/elephantry/blob/1.7.0/core/examples/00-config.rs).
+
 # Querying
 
 ## Primitive types
