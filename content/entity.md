@@ -13,7 +13,7 @@ struct Employee {
     name: String,
 }
 
-let results = elephantry
+let employees = elephantry
     .query::<Employee>("select id, name from employee", &[])?;
 
 for employee in employees {

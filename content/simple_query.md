@@ -7,11 +7,11 @@ more="@/documentation/quickstart/index.md#primitive-types"
 +++
 
 ```rust
-let elephantry = elephantry::Pool::new(database_url)?;
+let elephantry = elephantry::Pool::new(&database_url)?;
 let results = elephantry
-    .query("select name from department", &[])?;
+    .execute("select name from department")?;
 
-for result in results {
+for result in &results {
     let name: String = result.get("name");
     println!("{}", name);
 }

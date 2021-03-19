@@ -162,8 +162,8 @@ mod employee {
         last_name: String,
         birth_date: chrono::NaiveDate,
         is_manager: bool,
-        day_salary: f32,
-        department_id: elephantry::Interval,
+        day_salary: bigdecimal::BigDecimal,
+        department_id: i32,
     }
 }
 ```
@@ -172,7 +172,7 @@ Thanks to this, you can use the `Connection::query` function which allows you to
 directly retrieve entities:
 
 ```rust
-let employee = elephantry.query::<employee::Entity>(
+let employees = elephantry.query::<employee::Entity>(
     "select * from employee",
     &[],
 )?;
@@ -261,8 +261,7 @@ impl<'a> elephantry::Model<'a> for Model {
     type Structure = Structure;
 
     fn new(_: &'a elephantry::Connection) -> Self {
-        Self {
-        }
+        Self
     }
 }
 ```
@@ -327,7 +326,7 @@ the fields of our table, but it is possible to define another one via the
 `elephantry::Model::create_projection` function:
 
 ```rust
-impl<'a> elephantry::Model<'a> for Model {
+impl<'a> elephantry::Model<'a> for Model<'a> {
     fn create_projection() -> elephantry::Projection {
         Self::default_projection()
             .add_field("age", "age(%:birth_date:%)")
@@ -436,7 +435,7 @@ implements `elephantry::Entity`) to store our results.
 Now all we have to do is write down our function:
 
 ```rust
-impl<'a> Model<'a> {
+impl<'a> employee::Model<'a> {
     pub fn managers_salary(&self) -> elephantry::Result<i32> {
         let query = "select sum(day_salary) from employee where is_manager";
 
@@ -478,7 +477,7 @@ entity:
 use elephantry::{Model, Structure};
 
 #[derive(Debug, elephantry::Entity)]
-pub struct Entity {
+pub struct Employee {
     pub employee_id: i32,
     pub first_name: String,
     pub last_name: String,
@@ -488,8 +487,8 @@ pub struct Entity {
     pub departments: Vec<String>,
 }
 
-impl<'a> Model<'a> {
-    pub fn employee_with_department(&self, id: i32) -> elephantry::Result<super::Employee> {
+impl<'a> employee::Model<'a> {
+    pub fn employee_with_department(&self, id: i32) -> elephantry::Result<Employee> {
         let query = r#"
 select {projection}
     from {employee}
@@ -504,10 +503,10 @@ select {projection}
 
         let sql = query
             .replace("{projection}", &projection.to_string())
-            .replace("{employee}", <Self as elephantry::Model>::Structure::relation())
-            .replace("{department}", super::department::Structure::relation());
+            .replace("{employee}", employee::Structure::relation())
+            .replace("{department}", department::Structure::relation());
 
-        Ok(self.connection.query::<super::Employee>(&sql, &[&id])?.get(0))
+        Ok(self.connection.query::<Employee>(&sql, &[&id])?.get(0))
     }
 }
 ```
@@ -601,7 +600,7 @@ available in async context. To benefit from it, simply use the
 `Connection::r#async` function:
 
 ```rust
-let results = elephantry.r#async().query::<employee::Entity>("select * from employee").await?;
+let results = elephantry.r#async().query::<employee::Entity>("select * from employee", &[]).await?;
 ```
 
 You can see the
