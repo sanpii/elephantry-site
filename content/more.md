@@ -9,7 +9,9 @@ more="@/documentation/quickstart/index.md#async"
 ```rust
 let r#async = elephantry.r#async();
 r#async.execute("select * from department").await?;
+```
 
+```rust
 let transaction = elephantry.transaction();
 transaction.start()?;
 // …
