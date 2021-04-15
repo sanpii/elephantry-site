@@ -205,7 +205,7 @@ let employees = elephantry.query::<employee::Entity>(
 )?;
 ```
 
-Tips: if you’re tired of numbering parameters, you can use the `$*` placeholder.
+> If you’re tired of numbering parameters, you can use the `$*` placeholder.
 
 This saves you from having to pay attention to special characters and protects
 you against SQL injections.
