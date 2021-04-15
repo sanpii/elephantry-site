@@ -1,19 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>{{ page.title }}</h1>
-
-    {#
-    <ul>
-        {% for h1 in page.toc %}
-            <li>
-                <a href="{{h1.permalink | safe}}">{{ h1.title }}</a>
-            </li>
-        {% endfor %}
-    </ul>
-    #}
+<div class="documentation">
+    <aside class="sidebar">
+        <ul>
+            {% for h1 in page.toc %}
+                <li>
+                    <a href="{{ h1.permalink | safe }}">{{ h1.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </aside>
 
     <div class="container">
         {{ page.content|safe }}
     </div>
+</div>
 {% endblock %}
