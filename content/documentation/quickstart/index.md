@@ -106,6 +106,19 @@ enabling the `config-support` feature) to use this layered configuration system
 to easily build an `elephantry::Config` object. See
 [00-config.rs](https://github.com/elephantry/elephantry/blob/2.0.0/core/examples/00-config.rs).
 
+> To help your sysadmin to investage about performance issues, I recommand to
+> set the [application
+> name](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNECT-APPLICATION-NAME)
+> in the connection parameter:
+>
+> ```rust
+> let elephantry = elephantry::Pool::new("postgresql://127.0.0.1/db?application_name=app-name")?;
+> ```
+>
+> This is usefull in
+> [pgbadger](https://pgbadger.darold.net/samplev7.html#queries-by-application)
+> for example.
+
 # Querying
 
 ## Primitive types
@@ -250,6 +263,26 @@ The `elephantry::Structure::relation` function returns the name of the table
 composing the primary key, and finally `elephantry::Structure::columns` will
 contain the list of the fields of our table.
 
+You can use derive attribute to generate this code:
+
+
+```rust
+mod employee {
+    #[derive(Debug, elephantry::Entity)]
+    #[elephantry(structure = "Structure", relation = "public.employee")]
+    struct Entity {
+        #[elephantry(pk)]
+        employee_id: i32,
+        first_name: String,
+        last_name: String,
+        birth_date: chrono::NaiveDate,
+        is_manager: bool,
+        day_salary: bigdecimal::BigDecimal,
+        department_id: i32,
+    }
+}
+```
+
 The `elephantry::Model` trait creates the link between an entity and a
 structure:
 
@@ -262,6 +295,25 @@ impl<'a> elephantry::Model<'a> for Model {
 
     fn new(_: &'a elephantry::Connection) -> Self {
         Self
+    }
+}
+```
+
+Or with derive attribute:
+
+```rust
+mod employee {
+    #[derive(Debug, elephantry::Entity)]
+    #[elephantry(model = "Model", structure = "Structure", relation = "public.employee")]
+    struct Entity {
+        #[elephantry(pk)]
+        employee_id: i32,
+        first_name: String,
+        last_name: String,
+        birth_date: chrono::NaiveDate,
+        is_manager: bool,
+        day_salary: bigdecimal::BigDecimal,
+        department_id: i32,
     }
 }
 ```
@@ -349,6 +401,22 @@ struct Entity {
     is_manager: bool,
     day_salary: f32,
     department_id: i32,
+    age: u32,
+}
+```
+
+You also do the same think with the `virtual` attribute:
+
+```rust
+struct Entity {
+    employee_id: i32,
+    first_name: String,
+    last_name: String,
+    birth_date: chrono::NaiveDate,
+    is_manager: bool,
+    day_salary: f32,
+    department_id: i32,
+    #[elephantry(virtual = "age(%:birth_date:%)"]
     age: u32,
 }
 ```
@@ -484,6 +552,7 @@ pub struct Employee {
     pub birth_date: chrono::NaiveDate,
     pub is_manager: bool,
     pub day_salary: bigdecimal::BigDecimal,
+    #[elephantry(virtual)]
     pub departments: Vec<String>,
 }
 
@@ -510,6 +579,9 @@ select {projection}
     }
 }
 ```
+
+> If you use the `model` attribute to generate the `Model` implementation, you
+> should add a `virtual` attribute to exclude this column from queries.
 
 Ok, it’s a simple query because we retreive only one department per employee,
 but a department can have a parent! Why don’t you retreive its hierarchie? The
@@ -577,6 +649,7 @@ pub struct Entity {
     pub birth_date: chrono::NaiveDate,
     pub is_manager: bool,
     pub day_salary: bigdecimal::BigDecimal,
+    #[elephantry(virtual)]
     pub departments: Vec<Department>,
 }
 

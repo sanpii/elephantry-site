@@ -8,19 +8,11 @@ more="@/documentation/quickstart/index.md#modification"
 
 ```rust
 #[derive(elephantry::Entity)]
+#[elephantry(model = "Model", structure = "Structure")]
 struct Entity {
+    #[elephantry(pk)]
     id: i32,
     name: String,
-}
-
-struct Model;
-impl elephantry::Model for Model {
-    // …
-}
-
-struct Structure;
-impl elephantry::Structure for Structure {
-    // …
 }
 
 elephantry.find_all::<Model>(Some("order by name"))?;
