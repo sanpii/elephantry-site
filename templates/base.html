@@ -8,20 +8,22 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-            <a class="navbar-brand" href="{{ get_url(path="/")|safe }}">Elephantry</a>
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{ get_url(path="/")|safe }}">Elephantry</a>
 
-            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ get_url(path="/documentation")|safe }}">Docs</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link ext" target="_blank" href="https://docs.rs/elephantry/">API</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link ext" target="_blank" href="https://github.com/elephantry/elephantry">Code</a>
-                    </li>
-                </ul>
+                <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ get_url(path="/documentation")|safe }}">Docs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link ext" target="_blank" href="https://docs.rs/elephantry/">API</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link ext" target="_blank" href="https://github.com/elephantry/elephantry">Code</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
 

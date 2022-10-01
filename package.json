@@ -1,7 +1,7 @@
 {
     "name": "elephantry",
     "dependencies": {
-        "bootstrap": "^4.5",
+        "bootstrap": "^5.2",
         "bootstrap-icons": "^1.0"
     }
 }
