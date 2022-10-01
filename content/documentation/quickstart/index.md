@@ -289,11 +289,11 @@ structure:
 ```rust
 struct Model;
 
-impl<'a> elephantry::Model<'a> for Model {
+impl elephantry::Model for Model {
     type Entity = Entity;
     type Structure = Structure;
 
-    fn new(_: &'a elephantry::Connection) -> Self {
+    fn new(_: &elephantry::Connection) -> Self {
         Self
     }
 }
@@ -378,7 +378,7 @@ the fields of our table, but it is possible to define another one via the
 `elephantry::Model::create_projection` function:
 
 ```rust
-impl<'a> elephantry::Model<'a> for Model<'a> {
+impl elephantry::Model for Model {
     fn create_projection() -> elephantry::Projection {
         Self::default_projection()
             .add_field("age", "age(%:birth_date:%)")
@@ -481,17 +481,17 @@ To start, we’re going to handle the connection to the database so that we can
 execute our request:
 
 ```rust
-struct Model<'a> {
-    connection: &'a elephantry::Connection,
+struct Model {
+    connection: elephantry::Connection,
 }
 
-impl<'a> elephantry::Model<'a> for Model<'a> {
+impl elephantry::Model for Model {
     type Entity = std::collections::HashMap<String, i32>;
     type Structure = Structure;
 
-    fn new(connection: &'a elephantry::Connection) -> Self {
+    fn new(connection: &elephantry::Connection) -> Self {
         Self {
-            connection
+            connection: connection.clone(),
         }
     }
 }
@@ -503,7 +503,7 @@ implements `elephantry::Entity`) to store our results.
 Now all we have to do is write down our function:
 
 ```rust
-impl<'a> employee::Model<'a> {
+impl employee::Model {
     pub fn managers_salary(&self) -> elephantry::Result<i32> {
         let query = "select sum(day_salary) from employee where is_manager";
 
@@ -556,7 +556,7 @@ pub struct Employee {
     pub departments: Vec<String>,
 }
 
-impl<'a> employee::Model<'a> {
+impl employee::Model {
     pub fn employee_with_department(&self, id: i32) -> elephantry::Result<Employee> {
         let query = r#"
 select {projection}
