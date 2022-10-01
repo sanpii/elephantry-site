@@ -9,4 +9,6 @@ highlight_theme = "monokai"
 highlight_code = true
 highlight_theme = "monokai"
 
+external_links_target_blank = true
+
 [extra]
