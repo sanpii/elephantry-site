@@ -4,13 +4,13 @@ jobs:
   link-check:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@main
     - uses: gaurav-nelson/github-action-markdown-link-check@v1
   build:
     name: shalzz/zola-deploy-action
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@main
     - uses: borales/actions-yarn@v2.0.0
       with:
         cmd: install
