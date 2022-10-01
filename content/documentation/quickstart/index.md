@@ -698,6 +698,19 @@ PostgreSQL can be a low-effort message broker with `LISTEN`/`NOTIFY` commands.
 See the
 [11-notification.rs](https://github.com/elephantry/elephantry/blob/2.1.0/core/examples/11-notification.rs) example.
 
+# Copy
+
+You can use the postgresql copy mode to insert many entities quickly:
+
+```rust
+let entities = (1..10_000).into_iter().map(employee::Entity::new);
+
+elephantry.copy::<employee::Model, _>(entities)?;
+```
+
+See the
+[12-copy.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/12-copy.rs) example.
+
 # More
 
 You can also see the [todo](https://github.com/elephantry/todo) rocket
