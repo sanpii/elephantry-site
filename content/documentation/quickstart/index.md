@@ -70,7 +70,7 @@ create table employee (
 );
 ```
 
-See the [structure.sql](https://github.com/elephantry/elephantry/blob/2.1.0/core/examples/structure.sql) file for complete source with data
+See the [structure.sql](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/structure.sql) file for complete source with data
 sample.
 
 # Connection
@@ -104,7 +104,7 @@ trait).
 You can also use the [config](https://crates.io/crates/config) crate (by
 enabling the `config-support` feature) to use this layered configuration system
 to easily build an `elephantry::Config` object. See
-[00-config.rs](https://github.com/elephantry/elephantry/blob/2.1.0/core/examples/00-config.rs).
+[00-config.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/00-config.rs).
 
 > To help your sysadmin to investage about performance issues, I recommand to
 > set the [application
@@ -157,7 +157,7 @@ In this case, it is possible to use the `Option` type:
 let parent_id: Option<i32> = results.get(0).get("parent_id");
 ```
 
-See [01-execute.rs](https://github.com/elephantry/elephantry/blob/2.1.0/core/examples/01-execute.rs).
+See [01-execute.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/01-execute.rs).
 
 # Entity
 
@@ -220,7 +220,7 @@ In addition, if you are only interested by the first row, you can use
 let total_salary = elephantry.query_one::<bigdecimal::BigDecimal>("select sum(day_salary) from employee", &[])?;
 ```
 
-See [02-query.rs](https://github.com/elephantry/elephantry/blob/2.1.0/core/examples/02-query.rs).
+See [02-query.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/02-query.rs).
 
 ## Model
 
@@ -346,7 +346,7 @@ your data :
 - [`Connection::count_where`](https://docs.rs/elephantry/latest/elephantry/connection/struct.Connection.html#method.count_where);
 - [`Connection::exist_where`](https://docs.rs/elephantry/latest/elephantry/connection/struct.Connection.html#method.exist_where).
 
-See [03-read.rs](https://github.com/elephantry/elephantry/blob/2.1.0/core/examples/03-read.rs).
+See [03-read.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/03-read.rs).
 
 # Modification
 
@@ -360,7 +360,7 @@ See [03-read.rs](https://github.com/elephantry/elephantry/blob/2.1.0/core/exampl
 
 Theire functions return the impacted entity(ies).
 
-See [04-write.rs](https://github.com/elephantry/elephantry/blob/2.1.0/core/examples/04-write.rs).
+See [04-write.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/04-write.rs).
 
 # Additional informations
 
@@ -431,7 +431,7 @@ for employee in employees {
 }
 ```
 
-See [05-extra.rs](https://github.com/elephantry/elephantry/blob/2.1.0/core/examples/05-extra.rs).
+See [05-extra.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/05-extra.rs).
 
 You can already use the power of SQL, such as the [window
 functions](https://modern-sql.com/blog/2019-02/postgresql-11#over), for example,
@@ -523,7 +523,7 @@ let model = elephantry.model::<employee::Model>();
 let managers_salary = model.managers_salary()?;
 ```
 
-See [06-complex.rs](https://github.com/elephantry/elephantry/blob/2.1.0/core/examples/06-complex.rs).
+See [06-complex.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/06-complex.rs).
 
 # Relationships
 
@@ -603,7 +603,7 @@ select e.*, array_agg(depts.name) as departments
 ```
 
 And you can see
-[07-relations](https://github.com/elephantry/elephantry/blob/2.1.0/core/examples/07-relations.rs) for the
+[07-relations](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/07-relations.rs) for the
 complete example. How many queries do you think would be executed with an
 ORM?[^6]
 
@@ -661,7 +661,7 @@ pub struct Department {
 }
 ```
 
-See [08-composite.rs](https://github.com/elephantry/elephantry/blob/2.1.0/core/examples/08-composite.rs).
+See [08-composite.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/08-composite.rs).
 
 Composite types can also be created with [create
 type](https://www.postgresql.org/docs/current/rowtypes.html).
@@ -677,7 +677,7 @@ let results = elephantry.r#async().query::<employee::Entity>("select * from empl
 ```
 
 You can see the
-[09-async.rs](https://github.com/elephantry/elephantry/blob/2.1.0/core/examples/09-async.rs) example[^7], it’s a
+[09-async.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/09-async.rs) example[^7], it’s a
 rewrite of second example in async context.
 
 # Transaction
@@ -688,7 +688,7 @@ As async, there is a second layer dedicated to transactions available via
 This layer allows you to start (begin) a new transaction, commit, roolback, …
 
 You can see the
-[10-transaction.rs](https://github.com/elephantry/elephantry/blob/2.1.0/core/examples/10-transaction.rs) for a
+[10-transaction.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/10-transaction.rs) for a
 complete example.
 
 # Notification
@@ -696,7 +696,7 @@ complete example.
 PostgreSQL can be a low-effort message broker with `LISTEN`/`NOTIFY` commands.
 
 See the
-[11-notification.rs](https://github.com/elephantry/elephantry/blob/2.1.0/core/examples/11-notification.rs) example.
+[11-notification.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/11-notification.rs) example.
 
 # Copy
 
