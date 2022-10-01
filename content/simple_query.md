@@ -13,6 +13,6 @@ let results = elephantry
 
 for result in &results {
     let name: String = result.get("name");
-    println!("{}", name);
+    println!("{name}");
 }
 ```

@@ -131,7 +131,7 @@ let results = elephantry.execute("select * from department")?;
 
 for result in &results {
     let name: String = result.get("name");
-    println!("{}", name);
+    println!("{name}");
 }
 ```
 

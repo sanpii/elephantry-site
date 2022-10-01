@@ -12,7 +12,7 @@ let results = elephantry
     .query::<(String, String)>(include_str!("query.sql"), &[])?;
 
 for result in results {
-    println!("{:?}", result);
+    println!("{:result?}");
 }
 ```
 
