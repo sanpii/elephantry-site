@@ -667,7 +667,9 @@ See [08-composite.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/e
 Composite types can also be created with [create
 type](https://www.postgresql.org/docs/current/rowtypes.html).
 
-## Async
+## More
+
+### Async
 
 `Connection::execute`, `Connection::query` and `Connection::query_one` are
 available in async context. To benefit from it, simply use the
@@ -681,7 +683,7 @@ You can see the
 [09-async.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/09-async.rs) example[^7], it’s a
 rewrite of second example in async context.
 
-## Transaction
+### Transaction
 
 As async, there is a second layer dedicated to transactions available via
 `Connection::transaction` function.
@@ -692,14 +694,14 @@ You can see the
 [10-transaction.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/10-transaction.rs) for a
 complete example.
 
-## Notification
+### Notification
 
 PostgreSQL can be a low-effort message broker with `LISTEN`/`NOTIFY` commands.
 
 See the
 [11-notification.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/11-notification.rs) example.
 
-## Copy
+### Copy
 
 You can use the postgresql copy mode to insert many entities quickly:
 
@@ -712,7 +714,7 @@ elephantry.copy::<employee::Model, _>(entities)?;
 See the
 [12-copy.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/12-copy.rs) example.
 
-## More
+### And much more
 
 You can also see the [todo](https://github.com/elephantry/todo) rocket
 application for a real example.

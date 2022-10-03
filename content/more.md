@@ -3,7 +3,7 @@ title = "More…"
 description = "Elephantry supports async queries and have a transaction helper."
 weight = 5
 [extra]
-more="@/documentation/quickstart/index.md#async"
+more="@/documentation/quickstart/index.md#more"
 +++
 
 ```rust
