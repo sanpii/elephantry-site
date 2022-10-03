@@ -3,7 +3,7 @@ title = "Quickstart"
 template = "documentation.html"
 +++
 
-# What’s elephantry?
+## What’s elephantry?
 
 Elephantry is an OMM, object model manager, a tool to interact with a database
 like an ORM but with an opposite philosophy.
@@ -45,7 +45,7 @@ If you want to read more about the difference between ORM and OMM, you can read
 Or if you prefer a video, you can see [Unleash Postgresql features in your PHP
 developments](https://www.youtube.com/watch?v=l0IY0vO07zQ).
 
-# Setting
+## Setting
 
 This paradigm change involves we should start by design our database instead of
 our objects.
@@ -73,7 +73,7 @@ create table employee (
 See the [structure.sql](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/structure.sql) file for complete source with data
 sample.
 
-# Connection
+## Connection
 
 First of all, it is necessary to connect to the database. In a very classical
 way, this is done thanks to its URL:
@@ -119,9 +119,9 @@ to easily build an `elephantry::Config` object. See
 > [pgbadger](https://pgbadger.darold.net/samplev7.html#queries-by-application)
 > for example.
 
-# Querying
+## Querying
 
-## Primitive types
+### Primitive types
 
 From there, it is already possible to make simple queries and get the results
 autautomatically typed in rust:
@@ -159,7 +159,7 @@ let parent_id: Option<i32> = results.get(0).get("parent_id");
 
 See [01-execute.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/01-execute.rs).
 
-# Entity
+## Entity
 
 Now that we’ve seen how to pick up simple guys, it’s possible to go further to
 directly retrieve an entity as a structure. To do this, our structure must
@@ -222,7 +222,7 @@ let total_salary = elephantry.query_one::<bigdecimal::BigDecimal>("select sum(da
 
 See [02-query.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/02-query.rs).
 
-## Model
+### Model
 
 We now come to the heart of the OMM principle with the trio
 entity/model/structure that will allow us to make the link between a table of
@@ -348,7 +348,7 @@ your data :
 
 See [03-read.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/03-read.rs).
 
-# Modification
+## Modification
 
 - [`Connection::insert_one`](https://docs.rs/elephantry/latest/elephantry/connection/struct.Connection.html#method.insert_one);
 - [`Connection::upsert_one`](https://docs.rs/elephantry/latest/elephantry/connection/struct.Connection.html#method.upsert_one);
@@ -362,7 +362,7 @@ Theire functions return the impacted entity(ies).
 
 See [04-write.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/04-write.rs).
 
-# Additional informations
+## Additional informations
 
 So far we have covered the basic functionality, it is you’re probably wondering
 what the point of an ORM is.
@@ -465,7 +465,7 @@ select first_name, last_name, day_salary,
 Simply add this field to your projection. I leave you imagine the same thing
 done in rust.
 
-# Complex requests
+## Complex requests
 
 Maybe you wish to make a request more complex than simply change the projection,
 for example, an aggregate to sum up even numbers.
@@ -525,7 +525,7 @@ let managers_salary = model.managers_salary()?;
 
 See [06-complex.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/06-complex.rs).
 
-# Relationships
+## Relationships
 
 When you get here, you must have at least one question left: how do you deal
 with relations of our entity?
@@ -607,7 +607,7 @@ And you can see
 complete example. How many queries do you think would be executed with an
 ORM?[^6]
 
-# Composite type
+## Composite type
 
 With PostgreSQL, when you create a table, you also create a type with the same
 name.
@@ -666,7 +666,7 @@ See [08-composite.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/e
 Composite types can also be created with [create
 type](https://www.postgresql.org/docs/current/rowtypes.html).
 
-# Async
+## Async
 
 `Connection::execute`, `Connection::query` and `Connection::query_one` are
 available in async context. To benefit from it, simply use the
@@ -680,7 +680,7 @@ You can see the
 [09-async.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/09-async.rs) example[^7], it’s a
 rewrite of second example in async context.
 
-# Transaction
+## Transaction
 
 As async, there is a second layer dedicated to transactions available via
 `Connection::transaction` function.
@@ -691,14 +691,14 @@ You can see the
 [10-transaction.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/10-transaction.rs) for a
 complete example.
 
-# Notification
+## Notification
 
 PostgreSQL can be a low-effort message broker with `LISTEN`/`NOTIFY` commands.
 
 See the
 [11-notification.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/11-notification.rs) example.
 
-# Copy
+## Copy
 
 You can use the postgresql copy mode to insert many entities quickly:
 
@@ -711,7 +711,7 @@ elephantry.copy::<employee::Model, _>(entities)?;
 See the
 [12-copy.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/12-copy.rs) example.
 
-# More
+## More
 
 You can also see the [todo](https://github.com/elephantry/todo) rocket
 application for a real example.

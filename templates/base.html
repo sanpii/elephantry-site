@@ -1,7 +1,15 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Elephantry - When Rust meets PostgreSQL</title>
+        <title>
+            Elephantry - When Rust meets PostgreSQL
+            {% if page.title %}
+                | {{ page.title }}
+            {% endif %}
+            {% if section.title %}
+                | {{ section.title }}
+            {% endif %}
+        </title>
         <link rel="icon" type="image/png" href="{{ get_url(path="/favicon.ico")|safe }}" sizes="32x32" />
         <link href="{{ get_url(path="/lib/bootstrap/dist/css/bootstrap.min.css")|safe }}" rel="stylesheet" />
         <link rel="stylesheet" href="{{ get_url(path="site.css")|safe }}"/>
