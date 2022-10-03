@@ -21,8 +21,14 @@
 
                 <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ get_url(path="/documentation")|safe }}">Docs</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Docs</a>
+                            {% set doc = get_section(path="documentation/_index.md") %}
+                            <ul class="dropdown-menu">
+                                {% for page in doc.pages %}
+                                    <li><a class="dropdown-item" href="{{ page.permalink }}">{{ page.title }}</a></li>
+                                {% endfor %}
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link ext" target="_blank" href="https://docs.rs/elephantry/">API</a>

@@ -1,6 +1,7 @@
 +++
 title = "Quickstart"
 template = "documentation.html"
+weight = 0
 +++
 
 ## What’s elephantry?
