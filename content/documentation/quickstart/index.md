@@ -231,18 +231,21 @@ our database and our entity, while maintaining a certain amount of flexibility.
 
 We have already seen the entities that will contain our data.
 
-The `elephantry::Structure` trait will contain the information about a table:
+The `elephantry::Structure` and `elephantry::Projectable` traits[^4] will
+contain the information about a table:
 
 ```rust
 struct Structure;
 
 impl elephantry::Structure for Structure {
-    fn relation() -> &'static str {
-        "public.employee"
-    }
-
     fn primary_key() -> &'static [&'static str] {
         &["employee_id"]
+    }
+}
+
+impl elephantry::Projectable for Structure {
+    fn relation() -> &'static str {
+        "public.employee"
     }
 
     fn columns() -> &'static [&'static str] {
@@ -259,9 +262,9 @@ impl elephantry::Structure for Structure {
 }
 ```
 
-The `elephantry::Structure::relation` function returns the name of the table
+The `elephantry::Projectable::relation` function returns the name of the table
 (but it can be a view), `elephantry::Structure::primary_key` the field or fields
-composing the primary key, and finally `elephantry::Structure::columns` will
+composing the primary key, and finally `elephantry::Projectable::columns` will
 contain the list of the fields of our table.
 
 You can use derive attribute to generate this code:
@@ -371,10 +374,10 @@ what the point of an ORM is.
 That’s where the database is going to be our best ally. Rather than to get our
 base entities back and then operate on them in order to extend them to
 finally display them, we will directly ask to PostgreSQL to enrich our entities
-and retrieve them with these additional fields (where, why not, don’t get all
-fields[^4]).
+and retrieve them with these additional fields (or, why not, don’t get all
+fields[^5]).
 
-This will be possible with the model. The default projection[^5] contains all
+This will be possible with the model. The default projection[^6] contains all
 the fields of our table, but it is possible to define another one via the
 `elephantry::Model::create_projection` function:
 
@@ -606,7 +609,7 @@ select e.*, array_agg(depts.name) as departments
 And you can see
 [07-relations](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/07-relations.rs) for the
 complete example. How many queries do you think would be executed with an
-ORM?[^6]
+ORM?[^7]
 
 ## Composite type
 
@@ -680,7 +683,7 @@ let results = elephantry.r#async().query::<employee::Entity>("select * from empl
 ```
 
 You can see the
-[09-async.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/09-async.rs) example[^7], it’s a
+[09-async.rs](https://github.com/elephantry/elephantry/blob/3.0.0/core/examples/09-async.rs) example[^8], it’s a
 rewrite of second example in async context.
 
 ### Transaction
@@ -735,14 +738,18 @@ To go further on this last point:
 
 [^3]: Constant time access `O(1)`.
 
-[^4]: This is particularly useful for not retrieving sensitive data like
+[^4]: Since elephantry 4.0 the `Structure` trait is splited into 2 traits to
+    extend projection (create a `select … from …` query) to other kinds than
+    relations (table or view) who doesn’t have primary key.
+
+[^5]: This is particularly useful for not retrieving sensitive data like
   passwords.
 
-[^5]: The projection is the list of fields in the SELECT part of the request.
+[^6]: The projection is the list of fields in the SELECT part of the request.
 
-[^6]: 1 for the employee plus 1 per department, 4 here. The time taken by a
+[^7]: 1 for the employee plus 1 per department, 4 here. The time taken by a
   query isn’t just the time to execute it. Every time you should add the network
   latency plus the time the ORM transforms results in objet.
 
-[^7]: The relevance of this example is limited because the underlayed driver, libpq,
+[^8]: The relevance of this example is limited because the underlayed driver, libpq,
 supports only one async query at a time.
