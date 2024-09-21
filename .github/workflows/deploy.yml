@@ -4,18 +4,18 @@ jobs:
   link-check:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@main
+    - uses: actions/checkout@v4
     - uses: gaurav-nelson/github-action-markdown-link-check@v1
   build:
-    name: shalzz/zola-deploy-action
+    name: Publish site
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@main
-    - uses: borales/actions-yarn@v2.0.0
+    - uses: actions/checkout@v4
+    - uses: borales/actions-yarn@v5.0.0
       with:
         cmd: install
-    - name: shalzz/zola-deploy-action
-      uses: shalzz/zola-deploy-action@v0.12.0
+    - name: Build and deploy
+      uses: shalzz/zola-deploy-action@v0.19.2
       env:
         PAGES_BRANCH: gh-pages
-        TOKEN: ${{ secrets.TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
